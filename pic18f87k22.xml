@@ -1,0 +1,1817 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    Copyright (C) 2011, Weston Schmidt <weston_schmidt@alumni.purdue.edu>
+
+    This XML document is based on the datasheet for the PIC18F87K22 family.
+
+    This library is free software; you can redistribute it and/or modify it
+    under the terms of the GNU General Public License as published by the
+    Free Software Foundation; either version 2.1, or (at your option) any
+    later version.
+
+    This library is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License 
+    along with this library; see the file COPYING. If not, write to the
+    Free Software Foundation, 51 Franklin Street, Fifth Floor, Boston,
+    MA 02110-1301, USA.
+
+    As a special exception, if you link this library with other files,
+    some of which are compiled with SDCC, to produce an executable,
+    this library does not by itself cause the resulting executable to
+    be covered by the GNU General Public License. This exception does
+    not however invalidate any other reasons why the executable file
+    might be covered by the GNU General Public License.
+-->
+<family name="pic18f87k22" document-name="DS39960C">
+    <devices>
+        <device>
+            <name>pic18f65k22</name>
+            <class>PROC_CLASS_PIC16E</class>
+            <pin-count>65</pin-count>
+            <coff-type>0x6522</coff-type>
+            <num-pages>0</num-pages>
+            <num-banks>0x60</num-banks>
+            <max-rom>0x7fff</max-rom>
+            <memory-size>2048</memory-size>
+        </device>
+        <device>
+            <name>pic18f66k22</name>
+            <class>PROC_CLASS_PIC16E</class>
+            <pin-count>65</pin-count>
+            <memory-size>4096</memory-size>
+            <coff-type>0xb622</coff-type>
+            <num-pages>0</num-pages>
+            <num-banks>0x60</num-banks>
+            <max-rom>0xffff</max-rom>
+        </device>
+        <device>
+            <name>pic18f67k22</name>
+            <class>PROC_CLASS_PIC16E</class>
+            <pin-count>65</pin-count>
+            <memory-size>4096</memory-size>
+            <coff-type>0x6722</coff-type>
+            <num-pages>0</num-pages>
+            <num-banks>0x60</num-banks>
+            <max-rom>0x1ffff</max-rom>
+        </device>
+        <device>
+            <name>pic18f85k22</name>
+            <class>PROC_CLASS_PIC16E</class>
+            <pin-count>80</pin-count>
+            <memory-size>2048</memory-size>
+            <coff-type>0x8522</coff-type>
+            <num-pages>0</num-pages>
+            <num-banks>0x60</num-banks>
+            <max-rom>0x7fff</max-rom>
+        </device>
+        <device>
+            <name>pic18f86k22</name>
+            <class>PROC_CLASS_PIC16E</class>
+            <pin-count>80</pin-count>
+            <memory-size>4096</memory-size>
+            <coff-type>0xc622</coff-type>
+            <num-pages>0</num-pages>
+            <num-banks>0x60</num-banks>
+            <max-rom>0xffff</max-rom>
+        </device>
+        <device>
+            <name>pic18f87k22</name>
+            <class>PROC_CLASS_PIC16E</class>
+            <pin-count>80</pin-count>
+            <memory-size>4096</memory-size>
+            <coff-type>0x8722</coff-type>
+            <num-pages>0</num-pages>
+            <num-banks>0x60</num-banks>
+            <max-rom>0x1ffff</max-rom>
+        </device>
+    </devices>
+    <limits>
+        <limit name="no_low_mem">
+            <only>pic18f66k22</only>
+            <only>pic18f67k22</only>
+            <only>pic18f86k22</only>
+            <only>pic18f87k22</only>
+        </limit>
+        <limit name="80_pin_chips">
+            <only>pic18f85k22</only>
+            <only>pic18f86k22</only>
+            <only>pic18f87k22</only>
+        </limit>
+        <limit name="max_mem">
+            <only>pic18f67k22</only>
+            <only>pic18f87k22</only>
+        </limit>
+    </limits>
+    <sfrs starting-page="97" ending-page="103" register-size="8">
+        <sfr name="TOSU" address="0xFFF" />
+        <sfr name="TOSH" address="0xFFE" />
+        <sfr name="TOSL" address="0xFFD" />
+        <sfr name="STKPTR" address="0xFFC">
+            <bit num="0" name="SP0"/>
+            <bit num="1" name="SP1"/>
+            <bit num="2" name="SP2"/>
+            <bit num="3" name="SP3"/>
+            <bit num="4" name="SP4"/>
+            <bit num="6" name="STKUNF"/>
+            <bit num="7" name="STKFUL"/>
+        </sfr>
+        <sfr name="PCLATU" address="0xFFB" />
+        <sfr name="PCLATH" address="0xFFA" />
+        <sfr name="PCL" address="0xFF9" />
+        <sfr name="TBLPTRU" address="0xFF8" />
+        <sfr name="TBLPTRH" address="0xFF7" />
+        <sfr name="TBLPTRL" address="0xFF6" />
+        <sfr name="TABLAT" address="0xFF5" />
+        <sfr name="PRODH" address="0xFF4" />
+        <sfr name="PRODL" address="0xFF3" />
+        <sfr name="INTCON" address="0xFF2">
+            <bit num="0" name="RBIF"/>
+            <bit num="1" name="INT0IF"/>
+            <bit num="2" name="TMR0IF"/>
+            <bit num="3" name="RBIE"/>
+            <bit num="4" name="INT0IE"/>
+            <bit num="5" name="TMR0IE"/>
+            <bit num="6" name="PEIE"/>
+            <bit num="6" name="GIEL"/>
+            <bit num="6" name="PEIE_GIEL"/>
+            <bit num="7" name="GIE"/>
+            <bit num="7" name="GIEH"/>
+            <bit num="7" name="GIE_GIEH"/>
+        </sfr>
+        <sfr name="INTCON2" address="0xFF1">
+            <bit num="0" name="RBIP"/>
+            <bit num="1" name="INT3IP"/>
+            <bit num="2" name="TMR0IP"/>
+            <bit num="3" name="INTEDG3"/>
+            <bit num="4" name="INTEDG2"/>
+            <bit num="5" name="INTEDG1"/>
+            <bit num="6" name="INTEDG0"/>
+            <bit num="7" name="NOT_RBPU"/>
+        </sfr>
+        <sfr name="INTCON3" address="0xFF0">
+            <bit num="0" name="INT1IF"/>
+            <bit num="1" name="INT2IF"/>
+            <bit num="2" name="INT3IF"/>
+            <bit num="3" name="INT1IE"/>
+            <bit num="4" name="INT2IE"/>
+            <bit num="5" name="INT3IE"/>
+            <bit num="6" name="INT1IP"/>
+            <bit num="7" name="INT2IP"/>
+        </sfr>
+        <sfr name="INDF0" address="0xFEF" />
+        <sfr name="POSTINC0" address="0xFEE" />
+        <sfr name="POSTDEC0" address="0xFED" />
+        <sfr name="PREINC0" address="0xFEC" />
+        <sfr name="PLUSW0" address="0xFEB" />
+        <sfr name="FSR0H" address="0xFEA" />
+        <sfr name="FSR0L" address="0xFE9" />
+        <sfr name="WREG" address="0xFE8" />
+        <sfr name="INDF1" address="0xFE7" />
+        <sfr name="POSTINC1" address="0xFE6" />
+        <sfr name="POSTDEC1" address="0xFE5" />
+        <sfr name="PREINC1" address="0xFE4" />
+        <sfr name="PLUSW1" address="0xFE3" />
+        <sfr name="FSR1H" address="0xFE2" />
+        <sfr name="FSR1L" address="0xFE1" />
+        <sfr name="BSR" address="0xFE0" />
+        <sfr name="INDF2" address="0xFDF" />
+        <sfr name="POSTINC2" address="0xFDE" />
+        <sfr name="POSTDEC2" address="0xFDD" />
+        <sfr name="PREINC2" address="0xFDC" />
+        <sfr name="PLUSW2" address="0xFDB" />
+        <sfr name="FSR2H" address="0xFDA" />
+        <sfr name="FSR2L" address="0xFD9" />
+        <sfr name="STATUS" address="0xFD8">
+            <bit num="0" name="C"/>
+            <bit num="1" name="DC"/>
+            <bit num="2" name="Z"/>
+            <bit num="3" name="OV"/>
+            <bit num="4" name="N"/>
+        </sfr>
+        <sfr name="TMR0H" address="0xFD7" />
+        <sfr name="TMR0L" address="0xFD6" />
+        <sfr name="T0CON" address="0xFD5">
+            <bit num="0" name="TOPS0"/>
+            <bit num="1" name="TOPS1"/>
+            <bit num="2" name="TOPS2"/>
+            <bit num="3" name="PSA"/>
+            <bit num="4" name="T0SE"/>
+            <bit num="5" name="T0CS"/>
+            <bit num="6" name="T08BIT"/>
+            <bit num="7" name="TMR0ON"/>
+        </sfr>
+        <sfr name="SPBRGH1" address="0xFD4" />
+        <sfr name="OSCCON" address="0xFD3">
+            <bit num="0" name="SCS0"/>
+            <bit num="1" name="SCS1"/>
+            <bit num="2" name="HFIOFS"/>
+            <bit num="3" name="OSTS"/>
+            <bit num="4" name="IRCF0"/>
+            <bit num="5" name="IRCF1"/>
+            <bit num="6" name="IRCF2"/>
+            <bit num="7" name="IDLEN"/>
+        </sfr>
+        <sfr name="IPR5" address="0xFD2">
+            <bit num="0" name="TMR4IP"/>
+            <bit num="1" name="TMR5IP"/>
+            <bit num="2" name="TMR6IP"/>
+            <bit num="3" name="TMR7IP" limit="no_low_mem"/>
+            <bit num="4" name="TMR8IP"/>
+            <bit num="5" name="TMR10IP" limit="no_low_mem"/>
+            <bit num="6" name="TMR12IP" limit="no_low_mem"/>
+            <bit num="7" name="TMR7GIP" limit="no_low_mem"/>
+        </sfr>
+        <sfr name="WDTCON" address="0xFD1">
+            <bit num="0" name="SWDTEN"/>
+            <bit num="1" name="ULPSINK"/>
+            <bit num="2" name="ULPEN"/>
+            <bit num="4" name="SRETEN"/>
+            <bit num="5" name="ULPLVL"/>
+            <bit num="7" name="REGSLP"/>
+        </sfr>
+        <sfr name="RCON" address="0xFD0">
+            <bit num="0" name="NOT_BOR"/>
+            <bit num="1" name="NOT_POR"/>
+            <bit num="2" name="NOT_PD"/>
+            <bit num="3" name="NOT_TO"/>
+            <bit num="4" name="NOT_RI"/>
+            <bit num="5" name="NOT_CM"/>
+            <bit num="6" name="SBOREN"/>
+            <bit num="7" name="IPEN"/>
+        </sfr>
+        <sfr name="TMR1H" address="0xFCF" />
+        <sfr name="TMR1L" address="0xFCE" />
+        <sfr name="T1CON" address="0xFCD">
+            <bit num="0" name="TMR1ON"/>
+            <bit num="1" name="RD16"/>
+            <bit num="2" name="NOT_T1SYNC"/>
+            <bit num="3" name="SOSCEN"/>
+            <bit num="4" name="T1CKPS0"/>
+            <bit num="5" name="T1CKPS1"/>
+            <bit num="6" name="TMR1CS0"/>
+            <bit num="7" name="TMR1CS1"/>
+        </sfr>
+        <sfr name="TMR2" address="0xFCC" />
+        <sfr name="PR2" address="0xFCB" />
+        <sfr name="T2CON" address="0xFCA">
+            <bit num="0" name="T2CKPS0"/>
+            <bit num="1" name="T2CKPS1"/>
+            <bit num="2" name="TMR2ON"/>
+            <bit num="3" name="T2OUTPS0"/>
+            <bit num="4" name="T2OUTPS1"/>
+            <bit num="5" name="T2OUTPS2"/>
+            <bit num="6" name="T2OUTPS3"/>
+        </sfr>
+        <sfr name="SSP1BUF" address="0xFC9" />
+        <sfr name="SSP1ADD" address="0xFC8" />
+        <sfr name="SSP1STAT" address="0xFC7">
+            <bit num="0" name="BF"/>
+            <bit num="1" name="UA"/>
+            <bit num="2" name="R"/>
+            <bit num="2" name="NOT_W"/>
+            <bit num="2" name="R_NOT_W"/>
+            <bit num="2" name="R_W"/>
+            <bit num="2" name="NOT_WRITE"/>
+            <bit num="2" name="READ_WRITE"/>
+            <bit num="3" name="S"/>
+            <bit num="4" name="P"/>
+            <bit num="5" name="D"/>
+            <bit num="5" name="NOT_A"/>
+            <bit num="5" name="D_NOT_A"/>
+            <bit num="5" name="D_A"/>
+            <bit num="5" name="NOT_ADDRESS"/>
+            <bit num="5" name="DATA_ADDRESS"/>
+            <bit num="6" name="CKE"/>
+            <bit num="7" name="SMP"/>
+        </sfr>
+        <sfr name="SSP1CON1" address="0xFC6">
+            <bit num="0" name="SSPM0"/>
+            <bit num="1" name="SSPM1"/>
+            <bit num="2" name="SSPM2"/>
+            <bit num="3" name="SSPM3"/>
+            <bit num="4" name="CKP"/>
+            <bit num="5" name="SSPEN"/>
+            <bit num="6" name="SSPOV"/>
+            <bit num="7" name="WCOL"/>
+        </sfr>
+        <sfr name="SSP1CON2" address="0xFC5">
+            <bit num="0" name="SEN"/>
+            <bit num="1" name="RSEN"/>
+            <bit num="2" name="PEN"/>
+            <bit num="3" name="RCEN"/>
+            <bit num="4" name="ACKEN"/>
+            <bit num="5" name="ACKDT"/>
+            <bit num="6" name="ACKSTAT"/>
+            <bit num="7" name="GCEN"/>
+        </sfr>
+        <sfr name="ADRESH" address="0xFC4" />
+        <sfr name="ADRESL" address="0xFC3" />
+        <sfr name="ADCON0" address="0xFC2">
+            <bit num="0" name="ADON"/>
+            <bit num="1" name="GO"/>
+            <bit num="1" name="NOT_DONE"/>
+            <bit num="1" name="GO_NOT_DONE"/>
+            <bit num="1" name="GO_DONE"/>
+            <bit num="2" name="CHS0"/>
+            <bit num="3" name="CHS1"/>
+            <bit num="4" name="CHS2"/>
+            <bit num="5" name="CHS3"/>
+            <bit num="6" name="CHS4"/>
+        </sfr>
+        <sfr name="ADCON1" address="0xFC1">
+            <bit num="0" name="CHSN0"/>
+            <bit num="1" name="CHSN1"/>
+            <bit num="2" name="CHSN2"/>
+            <bit num="3" name="VNCFG"/>
+            <bit num="4" name="VCFG0"/>
+            <bit num="5" name="VCFG1"/>
+            <bit num="6" name="TRIGSEL0"/>
+            <bit num="7" name="TRIGSEL1"/>
+        </sfr>
+        <sfr name="ADCON2" address="0xFC0">
+            <bit num="0" name="ADCS0"/>
+            <bit num="1" name="ADCS1"/>
+            <bit num="2" name="ADCS2"/>
+            <bit num="3" name="ACQT0"/>
+            <bit num="4" name="ACQT1"/>
+            <bit num="5" name="ACQT2"/>
+            <bit num="7" name="ADFM"/>
+        </sfr>
+        <sfr name="ECCP1AS" address="0xFBF">
+            <bit num="0" name="PSS1BD0"/>
+            <bit num="1" name="PSS1BD1"/>
+            <bit num="2" name="PSS1AC0"/>
+            <bit num="3" name="PSS1AC1"/>
+            <bit num="4" name="ECCP1AS0"/>
+            <bit num="5" name="ECCP1AS1"/>
+            <bit num="6" name="ECCP1AS2"/>
+            <bit num="7" name="ECCP1ASE"/>
+        </sfr>
+        <sfr name="ECCP1DEL" address="0xFBE">
+            <bit num="0" name="P1DC0"/>
+            <bit num="1" name="P1DC1"/>
+            <bit num="2" name="P1DC2"/>
+            <bit num="3" name="P1DC3"/>
+            <bit num="4" name="P1DC4"/>
+            <bit num="5" name="P1DC5"/>
+            <bit num="6" name="P1DC6"/>
+            <bit num="7" name="P1RSEN"/>
+        </sfr>
+        <sfr name="CCPR1H" address="0xFBD" />
+        <sfr name="CCPR1L" address="0xFBC" />
+        <sfr name="CCP1CON" address="0xFBB">
+            <bit num="0" name="CCP1M0"/>
+            <bit num="1" name="CCP1M1"/>
+            <bit num="2" name="CCP1M2"/>
+            <bit num="3" name="CCP1M3"/>
+            <bit num="4" name="DC1B0"/>
+            <bit num="5" name="DC1B1"/>
+            <bit num="6" name="P1M0"/>
+            <bit num="7" name="P1M1"/>
+        </sfr>
+        <sfr name="PIR5" address="0xFBA">
+            <bit num="0" name="TMR4IF"/>
+            <bit num="1" name="TMR5IF"/>
+            <bit num="2" name="TMR6IF"/>
+            <bit num="3" name="TMR7IF" limit="no_low_mem"/>
+            <bit num="4" name="TMR8IF"/>
+            <bit num="5" name="TMR10IF" limit="no_low_mem"/>
+            <bit num="6" name="TMR12IF" limit="no_low_mem"/>
+            <bit num="7" name="TMR7GIF" limit="no_low_mem"/>
+        </sfr>
+        <sfr name="PIE5" address="0xFB9">
+            <bit num="0" name="TMR4IE"/>
+            <bit num="1" name="TMR5IE"/>
+            <bit num="2" name="TMR6IE"/>
+            <bit num="3" name="TMR7IE" limit="no_low_mem"/>
+            <bit num="4" name="TMR8IE"/>
+            <bit num="5" name="TMR10IE" limit="no_low_mem" datasheet-error="true"/>
+            <bit num="6" name="TMR12IE" limit="no_low_mem"/>
+            <bit num="7" name="TMR7GIE" limit="no_low_mem"/>
+        </sfr>
+        <sfr name="IPR4" address="0xFB8">
+            <bit num="0" name="CCP3IP"/>
+            <bit num="1" name="CCP4IP"/>
+            <bit num="2" name="CCP5IP"/>
+            <bit num="3" name="CCP6IP"/>
+            <bit num="4" name="CCP7IP"/>
+            <bit num="5" name="CCP8IP"/>
+            <bit num="6" name="CCP9IP" limit="no_low_mem"/>
+            <bit num="7" name="CCP10IP" limit="no_low_mem"/>
+        </sfr>
+        <sfr name="PIR4" address="0xFB7">
+            <bit num="0" name="CCP3IF"/>
+            <bit num="1" name="CCP4IF"/>
+            <bit num="2" name="CCP5IF"/>
+            <bit num="3" name="CCP6IF"/>
+            <bit num="4" name="CCP7IF"/>
+            <bit num="5" name="CCP8IF"/>
+            <bit num="6" name="CCP9IF" limit="no_low_mem"/>
+            <bit num="7" name="CCP10IF" limit="no_low_mem"/>
+        </sfr>
+        <sfr name="PIE4" address="0xFB6">
+            <bit num="0" name="CCP3IE"/>
+            <bit num="1" name="CCP4IE"/>
+            <bit num="2" name="CCP5IE"/>
+            <bit num="3" name="CCP6IE"/>
+            <bit num="4" name="CCP7IE"/>
+            <bit num="5" name="CCP8IE"/>
+            <bit num="6" name="CCP9IE" limit="no_low_mem"/>
+            <bit num="7" name="CCP10IE" limit="no_low_mem"/>
+        </sfr>
+        <sfr name="CVRCON" address="0xFB5">
+            <bit num="0" name="CVR0"/>
+            <bit num="1" name="CVR1"/>
+            <bit num="2" name="CVR2"/>
+            <bit num="3" name="CVR3"/>
+            <bit num="4" name="CVR4"/>
+            <bit num="5" name="CVRSS"/>
+            <bit num="6" name="CVROE"/>
+            <bit num="7" name="CVREN"/>
+        </sfr>
+        <sfr name="CMSTAT" address="0xFB4">
+            <bit num="5" name="CMP1OUT"/>
+            <bit num="6" name="CMP2OUT"/>
+            <bit num="7" name="CMP3OUT"/>
+        </sfr>
+        <sfr name="TMR3H" address="0xFB3" />
+        <sfr name="TMR3L" address="0xFB2" />
+        <sfr name="T3CON" address="0xFB1">
+            <bit num="0" name="TMR3ON"/>
+            <bit num="1" name="RD16"/>
+            <bit num="2" name="NOT_T3SYNC"/>
+            <bit num="3" name="SOSCEN"/>
+            <bit num="4" name="T3CKPS0"/>
+            <bit num="5" name="T3CKPS1"/>
+            <bit num="6" name="TMR3CS0"/>
+            <bit num="7" name="TMR3CS1"/>
+        </sfr>
+        <sfr name="T3GCON" address="0xFB0">
+            <bit num="0" name="T3GSS0"/>
+            <bit num="1" name="T3GSS1"/>
+            <bit num="2" name="T3GVAL"/>
+            <bit num="3" name="T3GGO"/>
+            <bit num="3" name="NOT_T3DONE"/>
+            <bit num="3" name="T3GGO_NOT_T3DONE"/>
+            <bit num="3" name="T3GGO_T3DONE"/>
+            <bit num="4" name="T3GSPM"/>
+            <bit num="5" name="T3GTM"/>
+            <bit num="6" name="T3GPOL"/>
+            <bit num="7" name="TMR3GE"/>
+        </sfr>
+        <sfr name="SPBRG1" address="0xFAF" />
+        <sfr name="RCREG1" address="0xFAE" />
+        <sfr name="TXREG1" address="0xFAD" />
+        <sfr name="TXSTA1" address="0xFAC">
+            <bit num="0" name="TX9D"/>
+            <bit num="1" name="TRMT"/>
+            <bit num="2" name="BRGH"/>
+            <bit num="3" name="SENDB"/>
+            <bit num="4" name="SYNC"/>
+            <bit num="5" name="TXEN"/>
+            <bit num="6" name="TX9"/>
+            <bit num="7" name="CSRC"/>
+        </sfr>
+        <sfr name="RCSTA1" address="0xFAB">
+            <bit num="0" name="RX9D"/>
+            <bit num="1" name="OERR"/>
+            <bit num="2" name="FERR"/>
+            <bit num="3" name="ADDEN"/>
+            <bit num="4" name="CREN"/>
+            <bit num="5" name="SREN"/>
+            <bit num="6" name="RX9"/>
+            <bit num="7" name="SPEN"/>
+        </sfr>
+        <sfr name="T1GCON" address="0xFAA">
+            <bit num="0" name="T1GSS0"/>
+            <bit num="1" name="T1GSS1"/>
+            <bit num="2" name="T1GVAL"/>
+            <bit num="3" name="T1GGO"/>
+            <bit num="3" name="NOT_T1DONE"/>
+            <bit num="3" name="T1GGO_NOT_T1DONE"/>
+            <bit num="3" name="T1GGO_T1DONE"/>
+            <bit num="4" name="T1GSPM"/>
+            <bit num="5" name="T1GTM"/>
+            <bit num="6" name="T1GPOL"/>
+            <bit num="7" name="TMR1GE"/>
+        </sfr>
+        <sfr name="IPR6" address="0xFA9">
+            <bit num="0" name="CMP1IP"/>
+            <bit num="1" name="CMP2IP"/>
+            <bit num="2" name="CMP3IP"/>
+            <bit num="4" name="EEIP"/>
+        </sfr>
+        <sfr name="HLVDCON" address="0xFA8">
+            <bit num="0" name="HLVDL0"/>
+            <bit num="1" name="HLVDL1"/>
+            <bit num="2" name="HLVDL2"/>
+            <bit num="3" name="HLVDL3"/>
+            <bit num="4" name="HLVDEN"/>
+            <bit num="5" name="IRVST"/>
+            <bit num="6" name="BGVST"/>
+            <bit num="7" name="VDIRMAG"/>
+        </sfr>
+        <sfr name="PSPCON" address="0xFA7">
+            <bit num="4" name="PSPMODE"/>
+            <bit num="5" name="IBOV"/>
+            <bit num="6" name="OBF"/>
+            <bit num="7" name="IBF"/>
+        </sfr>
+        <sfr name="PIR6" address="0xFA6">
+            <bit num="0" name="CMP1IF"/>
+            <bit num="1" name="CMP2IF"/>
+            <bit num="2" name="CMP3IF"/>
+            <bit num="4" name="EEIF"/>
+        </sfr>
+        <sfr name="IPR3" address="0xFA5">
+            <bit num="0" name="RTCCIP"/>
+            <bit num="1" name="CCP1IP"/>
+            <bit num="2" name="CCP2IP"/>
+            <bit num="3" name="CTMUIP"/>
+            <bit num="4" name="TX2IP"/>
+            <bit num="5" name="RC2IP"/>
+            <bit num="7" name="TMR5GIP"/>
+        </sfr>
+        <sfr name="PIR3" address="0xFA4">
+            <bit num="0" name="RTCCIF"/>
+            <bit num="1" name="CCP1IF"/>
+            <bit num="2" name="CCP2IF"/>
+            <bit num="3" name="CTMUIF"/>
+            <bit num="4" name="TX2IF"/>
+            <bit num="5" name="RC2IF"/>
+            <bit num="7" name="TMR5GIF"/>
+        </sfr>
+        <sfr name="PIE3" address="0xFA3">
+            <bit num="0" name="RTCCIE"/>
+            <bit num="1" name="CCP1IE"/>
+            <bit num="2" name="CCP2IE"/>
+            <bit num="3" name="CTMUIE"/>
+            <bit num="4" name="TX2IE"/>
+            <bit num="5" name="RC2IE"/>
+            <bit num="7" name="TMR5GIE"/>
+        </sfr>
+        <sfr name="IPR2" address="0xFA2">
+            <bit num="0" name="TMR3GIP"/>
+            <bit num="1" name="TMR3IP"/>
+            <bit num="2" name="HLVDIP"/>
+            <bit num="3" name="BCL1IP"/>
+            <bit num="4" name="BCL2IP"/>
+            <bit num="5" name="SSP2IP"/>
+            <bit num="7" name="OSCFIP"/>
+        </sfr>
+        <sfr name="PIR2" address="0xFA1">
+            <bit num="0" name="TMR3GIF"/>
+            <bit num="1" name="TMR3IF"/>
+            <bit num="2" name="HLVDIF"/>
+            <bit num="3" name="BCL1IF"/>
+            <bit num="4" name="BCL2IF"/>
+            <bit num="5" name="SSP2IF"/>
+            <bit num="7" name="OSCFIF"/>
+        </sfr>
+        <sfr name="PIE2" address="0xFA0">
+            <bit num="0" name="TMR3GIE"/>
+            <bit num="1" name="TMR3IE"/>
+            <bit num="2" name="HLVDIE"/>
+            <bit num="3" name="BCL1IE"/>
+            <bit num="4" name="BCL2IE"/>
+            <bit num="5" name="SSP2IE"/>
+            <bit num="7" name="OSCFIE"/>
+        </sfr>
+        <sfr name="IPR1" address="0xF9F">
+            <bit num="0" name="TMR1IP"/>
+            <bit num="1" name="TMR2IP"/>
+            <bit num="2" name="TMR1GIP"/>
+            <bit num="3" name="SSP1IP"/>
+            <bit num="4" name="TX1IP"/>
+            <bit num="5" name="RC1IP"/>
+            <bit num="6" name="ADIP"/>
+            <bit num="7" name="PSPIP"/>
+        </sfr>
+        <sfr name="PIR1" address="0xF9E">
+            <bit num="0" name="TMR1IF"/>
+            <bit num="1" name="TMR2IF"/>
+            <bit num="2" name="TMR1GIF"/>
+            <bit num="3" name="SSP1IF"/>
+            <bit num="4" name="TX1IF"/>
+            <bit num="5" name="RC1IF"/>
+            <bit num="6" name="ADIF"/>
+            <bit num="7" name="PSPIF"/>
+        </sfr>
+        <sfr name="PIE1" address="0xF9D">
+            <bit num="0" name="TMR1IE"/>
+            <bit num="1" name="TMR2IE"/>
+            <bit num="2" name="TMR1GIE"/>
+            <bit num="3" name="SSP1IE"/>
+            <bit num="4" name="TX1IE"/>
+            <bit num="5" name="RC1IE"/>
+            <bit num="6" name="ADIE"/>
+            <bit num="7" name="PSPIE"/>
+        </sfr>
+        <sfr name="PSTR1CON" address="0xF9C">
+            <bit num="0" name="STRA"/>
+            <bit num="1" name="STRB"/>
+            <bit num="2" name="STRC"/>
+            <bit num="3" name="STRD"/>
+            <bit num="4" name="STRSYNC"/>
+            <bit num="6" name="CMPL0"/>
+            <bit num="7" name="CMPL1"/>
+        </sfr>
+        <sfr name="OSCTUNE" address="0xF9B">
+            <bit num="0" name="TUN0"/>
+            <bit num="1" name="TUN1"/>
+            <bit num="2" name="TUN2"/>
+            <bit num="3" name="TUN3"/>
+            <bit num="4" name="TUN4"/>
+            <bit num="5" name="TUN5"/>
+            <bit num="6" name="PLLEN"/>
+            <bit num="7" name="INTSRC"/>
+        </sfr>
+        <sfr name="TRISJ" address="0xF9A" limit="no_low_mem">
+            <bit num="0" name="TRISJ0"/>
+            <bit num="1" name="TRISJ1"/>
+            <bit num="2" name="TRISJ2"/>
+            <bit num="3" name="TRISJ3"/>
+            <bit num="4" name="TRISJ4"/>
+            <bit num="5" name="TRISJ5"/>
+            <bit num="6" name="TRISJ6"/>
+            <bit num="7" name="TRISJ7"/>
+        </sfr>
+        <sfr name="TRISH" address="0xF99" limit="no_low_mem">
+            <bit num="0" name="TRISH0"/>
+            <bit num="1" name="TRISH1"/>
+            <bit num="2" name="TRISH2"/>
+            <bit num="3" name="TRISH3"/>
+            <bit num="4" name="TRISH4"/>
+            <bit num="5" name="TRISH5"/>
+            <bit num="6" name="TRISH6"/>
+            <bit num="7" name="TRISH7"/>
+        </sfr>
+        <sfr name="TRISG" address="0xF98">
+            <bit num="0" name="TRISG0"/>
+            <bit num="1" name="TRISG1"/>
+            <bit num="2" name="TRISG2"/>
+            <bit num="3" name="TRISG3"/>
+            <bit num="4" name="TRISG4"/>
+        </sfr>
+        <sfr name="TRISF" address="0xF97">
+            <bit num="1" name="TRISF1"/>
+            <bit num="2" name="TRISF2"/>
+            <bit num="3" name="TRISF3"/>
+            <bit num="4" name="TRISF4"/>
+            <bit num="5" name="TRISF5"/>
+            <bit num="6" name="TRISF6"/>
+            <bit num="7" name="TRISF7"/>
+        </sfr>
+        <sfr name="TRISE" address="0xF96">
+            <bit num="1" name="TRISE1"/>
+            <bit num="2" name="TRISE2"/>
+            <bit num="3" name="TRISE3"/>
+            <bit num="4" name="TRISE4"/>
+            <bit num="5" name="TRISE5"/>
+            <bit num="6" name="TRISE6"/>
+            <bit num="7" name="TRISE7"/>
+        </sfr>
+        <sfr name="TRISD" address="0xF95">
+            <bit num="0" name="TRISD0"/>
+            <bit num="1" name="TRISD1"/>
+            <bit num="2" name="TRISD2"/>
+            <bit num="3" name="TRISD3"/>
+            <bit num="4" name="TRISD4"/>
+            <bit num="5" name="TRISD5"/>
+            <bit num="6" name="TRISD6"/>
+            <bit num="7" name="TRISD7"/>
+        </sfr>
+        <sfr name="TRISC" address="0xF94">
+            <bit num="0" name="TRISC0"/>
+            <bit num="1" name="TRISC1"/>
+            <bit num="2" name="TRISC2"/>
+            <bit num="3" name="TRISC3"/>
+            <bit num="4" name="TRISC4"/>
+            <bit num="5" name="TRISC5"/>
+            <bit num="6" name="TRISC6"/>
+            <bit num="7" name="TRISC7"/>
+        </sfr>
+        <sfr name="TRISB" address="0xF93">
+            <bit num="0" name="TRISB0"/>
+            <bit num="1" name="TRISB1"/>
+            <bit num="2" name="TRISB2"/>
+            <bit num="3" name="TRISB3"/>
+            <bit num="4" name="TRISB4"/>
+            <bit num="5" name="TRISB5"/>
+            <bit num="6" name="TRISB6"/>
+            <bit num="7" name="TRISB7"/>
+        </sfr>
+        <sfr name="TRISA" address="0xF92">
+            <bit num="0" name="TRISA0"/>
+            <bit num="1" name="TRISA1"/>
+            <bit num="2" name="TRISA2"/>
+            <bit num="3" name="TRISA3"/>
+            <bit num="4" name="TRISA4"/>
+            <bit num="5" name="TRISA5"/>
+            <bit num="6" name="TRISA6"/>
+            <bit num="7" name="TRISA7"/>
+        </sfr>
+        <sfr name="LATJ" address="0xF91" limit="no_low_mem">
+            <bit num="0" name="LATJ0"/>
+            <bit num="1" name="LATJ1"/>
+            <bit num="2" name="LATJ2"/>
+            <bit num="3" name="LATJ3"/>
+            <bit num="4" name="LATJ4"/>
+            <bit num="5" name="LATJ5"/>
+            <bit num="6" name="LATJ6"/>
+            <bit num="7" name="LATJ7"/>
+        </sfr>
+        <sfr name="LATH" address="0xF90" limit="no_low_mem">
+            <bit num="0" name="LATH0"/>
+            <bit num="1" name="LATH1"/>
+            <bit num="2" name="LATH2"/>
+            <bit num="3" name="LATH3"/>
+            <bit num="4" name="LATH4"/>
+            <bit num="5" name="LATH5"/>
+            <bit num="6" name="LATH6"/>
+            <bit num="7" name="LATH7"/>
+        </sfr>
+        <sfr name="LATG" address="0xF8F">
+            <bit num="0" name="LATG0"/>
+            <bit num="1" name="LATG1"/>
+            <bit num="2" name="LATG2"/>
+            <bit num="3" name="LATG3"/>
+            <bit num="4" name="LATG4"/>
+        </sfr>
+        <sfr name="LATF" address="0xF8E">
+            <bit num="1" name="LATF1"/>
+            <bit num="2" name="LATF2"/>
+            <bit num="3" name="LATF3"/>
+            <bit num="4" name="LATF4"/>
+            <bit num="5" name="LATF5"/>
+            <bit num="6" name="LATF6"/>
+            <bit num="7" name="LATF7"/>
+        </sfr>
+        <sfr name="LATE" address="0xF8D">
+            <bit num="0" name="LATE0"/>
+            <bit num="1" name="LATE1"/>
+            <bit num="2" name="LATE2"/>
+            <bit num="3" name="LATE3"/>
+            <bit num="4" name="LATE4"/>
+            <bit num="5" name="LATE5"/>
+            <bit num="6" name="LATE6"/>
+            <bit num="7" name="LATE7"/>
+        </sfr>
+        <sfr name="LATD" address="0xF8C">
+            <bit num="0" name="LATD0"/>
+            <bit num="1" name="LATD1"/>
+            <bit num="2" name="LATD2"/>
+            <bit num="3" name="LATD3"/>
+            <bit num="4" name="LATD4"/>
+            <bit num="5" name="LATD5"/>
+            <bit num="6" name="LATD6"/>
+            <bit num="7" name="LATD7"/>
+        </sfr>
+        <sfr name="LATC" address="0xF8B">
+            <bit num="0" name="LATC0"/>
+            <bit num="1" name="LATC1"/>
+            <bit num="2" name="LATC2"/>
+            <bit num="3" name="LATC3"/>
+            <bit num="4" name="LATC4"/>
+            <bit num="5" name="LATC5"/>
+            <bit num="6" name="LATC6"/>
+            <bit num="7" name="LATC7"/>
+        </sfr>
+        <sfr name="LATB" address="0xF8A">
+            <bit num="0" name="LATB0"/>
+            <bit num="1" name="LATB1"/>
+            <bit num="2" name="LATB2"/>
+            <bit num="3" name="LATB3"/>
+            <bit num="4" name="LATB4"/>
+            <bit num="5" name="LATB5"/>
+            <bit num="6" name="LATB6"/>
+            <bit num="7" name="LATB7"/>
+        </sfr>
+        <sfr name="LATA" address="0xF89">
+            <bit num="0" name="LATA0"/>
+            <bit num="1" name="LATA1"/>
+            <bit num="2" name="LATA2"/>
+            <bit num="3" name="LATA3"/>
+            <bit num="4" name="LATA4"/>
+            <bit num="5" name="LATA5"/>
+            <bit num="6" name="LATA6"/>
+            <bit num="7" name="LATA7"/>
+        </sfr>
+        <sfr name="PORTJ" address="0xF88" limit="no_low_mem">
+            <bit num="0" name="RJ0"/>
+            <bit num="1" name="RJ1"/>
+            <bit num="2" name="RJ2"/>
+            <bit num="3" name="RJ3"/>
+            <bit num="4" name="RJ4"/>
+            <bit num="5" name="RJ5"/>
+            <bit num="6" name="RJ6"/>
+            <bit num="7" name="RJ7"/>
+        </sfr>
+        <sfr name="PORTH" address="0xF87" limit="no_low_mem">
+            <bit num="0" name="RH0"/>
+            <bit num="1" name="RH1"/>
+            <bit num="2" name="RH2"/>
+            <bit num="3" name="RH3"/>
+            <bit num="4" name="RH4"/>
+            <bit num="5" name="RH5"/>
+            <bit num="6" name="RH6"/>
+            <bit num="7" name="RH7"/>
+        </sfr>
+        <sfr name="PORTG" address="0xF86">
+            <bit num="0" name="RG0"/>
+            <bit num="1" name="RG1"/>
+            <bit num="2" name="RG2"/>
+            <bit num="3" name="RG3"/>
+            <bit num="4" name="RG4"/>
+            <bit num="5" name="RG5"/>
+        </sfr>
+        <sfr name="PORTF" address="0xF85">
+            <bit num="1" name="RF1"/>
+            <bit num="2" name="RF2"/>
+            <bit num="3" name="RF3"/>
+            <bit num="4" name="RF4"/>
+            <bit num="5" name="RF5"/>
+            <bit num="6" name="RF6"/>
+            <bit num="7" name="RF7"/>
+        </sfr>
+        <sfr name="PORTE" address="0xF84">
+            <bit num="0" name="RE0"/>
+            <bit num="1" name="RE1"/>
+            <bit num="2" name="RE2"/>
+            <bit num="3" name="RE3"/>
+            <bit num="4" name="RE4"/>
+            <bit num="5" name="RE5"/>
+            <bit num="6" name="RE6"/>
+            <bit num="7" name="RE7"/>
+        </sfr>
+        <sfr name="PORTD" address="0xF83">
+            <bit num="0" name="RD0"/>
+            <bit num="1" name="RD1"/>
+            <bit num="2" name="RD2"/>
+            <bit num="3" name="RD3"/>
+            <bit num="4" name="RD4"/>
+            <bit num="5" name="RD5"/>
+            <bit num="6" name="RD6"/>
+            <bit num="7" name="RD7"/>
+        </sfr>
+        <sfr name="PORTC" address="0xF82">
+            <bit num="0" name="RC0"/>
+            <bit num="1" name="RC1"/>
+            <bit num="2" name="RC2"/>
+            <bit num="3" name="RC3"/>
+            <bit num="4" name="RC4"/>
+            <bit num="5" name="RC5"/>
+            <bit num="6" name="RC6"/>
+            <bit num="7" name="RC7"/>
+        </sfr>
+        <sfr name="PORTB" address="0xF81">
+            <bit num="0" name="RB0"/>
+            <bit num="1" name="RB1"/>
+            <bit num="2" name="RB2"/>
+            <bit num="3" name="RB3"/>
+            <bit num="4" name="RB4"/>
+            <bit num="5" name="RB5"/>
+            <bit num="6" name="RB6"/>
+            <bit num="7" name="RB7"/>
+        </sfr>
+        <sfr name="PORTA" address="0xF80">
+            <bit num="0" name="RA0"/>
+            <bit num="1" name="RA1"/>
+            <bit num="2" name="RA2"/>
+            <bit num="3" name="RA3"/>
+            <bit num="4" name="RA4"/>
+            <bit num="5" name="RA5"/>
+            <bit num="6" name="RA6"/>
+            <bit num="7" name="RA7"/>
+        </sfr>
+        <sfr name="EECON1" address="0xF7F">
+            <bit num="0" name="RD"/>
+            <bit num="1" name="WR"/>
+            <bit num="2" name="WREN"/>
+            <bit num="3" name="WRERR"/>
+            <bit num="4" name="FREE"/>
+            <bit num="6" name="CFGS"/>
+            <bit num="7" name="EEPGD"/>
+        </sfr>
+        <sfr name="EECON2" address="0xF7E" />
+        <sfr name="TMR5H" address="0xF7D" />
+        <sfr name="TMR5L" address="0xF7C" />
+        <sfr name="T5CON" address="0xF7B">
+            <bit num="0" name="TMR5ON"/>
+            <bit num="1" name="RD16"/>
+            <bit num="2" name="NOT_T5SYNC"/>
+            <bit num="3" name="SOSCEN"/>
+            <bit num="4" name="T5CKPS0"/>
+            <bit num="5" name="T5CKPS1"/>
+            <bit num="6" name="TMR5CS0"/>
+            <bit num="7" name="TMR5CS1"/>
+        </sfr>
+        <sfr name="T5GCON" address="0xF7A">
+            <bit num="0" name="T5GSS0"/>
+            <bit num="1" name="T5GSS1"/>
+            <bit num="2" name="T5GVAL"/>
+            <bit num="3" name="T5GGO"/>
+            <bit num="3" name="NOT_T5DONE"/>
+            <bit num="3" name="T5GGO_NOT_T5DONE"/>
+            <bit num="3" name="T5GGO_T5DONE"/>
+            <bit num="4" name="T5GSPM"/>
+            <bit num="5" name="T5GTM"/>
+            <bit num="6" name="T5GPOL"/>
+            <bit num="7" name="TMR5GE"/>
+        </sfr>
+        <sfr name="CCPR4H" address="0xF79" />
+        <sfr name="CCPR4L" address="0xF78" />
+        <sfr name="CCP4CON" address="0xF77">
+            <bit num="0" name="CCP4M0"/>
+            <bit num="1" name="CCP4M1"/>
+            <bit num="2" name="CCP4M2"/>
+            <bit num="3" name="CCP4M3"/>
+            <bit num="4" name="DC4B0"/>
+            <bit num="5" name="DC4B1"/>
+        </sfr>
+        <sfr name="CCPR5H" address="0xF76" />
+        <sfr name="CCPR5L" address="0xF75" />
+        <sfr name="CCP5CON" address="0xF74">
+            <bit num="0" name="CCP5M0"/>
+            <bit num="1" name="CCP5M1"/>
+            <bit num="2" name="CCP5M2"/>
+            <bit num="3" name="CCP5M3"/>
+            <bit num="4" name="DC5B0"/>
+            <bit num="5" name="DC5B1"/>
+        </sfr>
+        <sfr name="CCPR6H" address="0xF73" />
+        <sfr name="CCPR6L" address="0xF72" />
+        <sfr name="CCP6CON" address="0xF71">
+            <bit num="0" name="CCP6M0"/>
+            <bit num="1" name="CCP6M1"/>
+            <bit num="2" name="CCP6M2"/>
+            <bit num="3" name="CCP6M3"/>
+            <bit num="4" name="DC6B0"/>
+            <bit num="5" name="DC6B1"/>
+        </sfr>
+        <sfr name="CCPR7H" address="0xF70" />
+        <sfr name="CCPR7L" address="0xF6F" />
+        <sfr name="CCP7CON" address="0xF6E">
+            <bit num="0" name="CCP7M0"/>
+            <bit num="1" name="CCP7M1"/>
+            <bit num="2" name="CCP7M2"/>
+            <bit num="3" name="CCP7M3"/>
+            <bit num="4" name="DC7B0"/>
+            <bit num="5" name="DC7B1"/>
+        </sfr>
+        <sfr name="TMR4" address="0xF6D" />
+        <sfr name="PR4" address="0xF6C" />
+        <sfr name="T4CON" address="0xF6B">
+            <bit num="0" name="T4CKPS0"/>
+            <bit num="1" name="T4CKPS1"/>
+            <bit num="2" name="TMR4ON"/>
+            <bit num="3" name="T4OUTPS0"/>
+            <bit num="4" name="T4OUTPS1"/>
+            <bit num="5" name="T4OUTPS2"/>
+            <bit num="6" name="T4OUTPS3"/>
+        </sfr>
+        <sfr name="SSP2BUF" address="0xF6A" />
+        <sfr name="SSP2ADD" address="0xF69" />
+        <sfr name="SSP2STAT" address="0xF68">
+            <bit num="0" name="BF"/>
+            <bit num="1" name="UA"/>
+            <bit num="2" name="R"/>
+            <bit num="2" name="NOT_W"/>
+            <bit num="2" name="R_NOT_W"/>
+            <bit num="2" name="R_W"/>
+            <bit num="2" name="NOT_WRITE"/>
+            <bit num="2" name="READ_WRITE"/>
+            <bit num="3" name="S"/>
+            <bit num="4" name="P"/>
+            <bit num="5" name="D"/>
+            <bit num="5" name="NOT_A"/>
+            <bit num="5" name="D_NOT_A"/>
+            <bit num="5" name="D_A"/>
+            <bit num="5" name="NOT_ADDRESS"/>
+            <bit num="5" name="DATA_ADDRESS"/>
+            <bit num="6" name="CKE"/>
+            <bit num="7" name="SMP"/>
+        </sfr>
+        <sfr name="SSP2CON1" address="0xF67">
+            <bit num="0" name="SSPM0"/>
+            <bit num="1" name="SSPM1"/>
+            <bit num="2" name="SSPM2"/>
+            <bit num="3" name="SSPM3"/>
+            <bit num="4" name="CKP"/>
+            <bit num="5" name="SSPEN"/>
+            <bit num="6" name="SSPOV"/>
+            <bit num="7" name="WCOL"/>
+        </sfr>
+        <sfr name="SSP2CON2" address="0xF66">
+            <bit num="0" name="SEN"/>
+            <bit num="1" name="RSEN"/>
+            <bit num="2" name="PEN"/>
+            <bit num="3" name="RCEN"/>
+            <bit num="4" name="ACKEN"/>
+            <bit num="5" name="ACKDT"/>
+            <bit num="6" name="ACKSTAT"/>
+            <bit num="7" name="GCEN"/>
+        </sfr>
+        <sfr name="BAUDCON1" address="0xF65">
+            <bit num="0" name="ABDEN"/>
+            <bit num="1" name="WUE"/>
+            <bit num="3" name="BRG16"/>
+            <bit num="4" name="TXCKP"/>
+            <bit num="5" name="RXDTP"/>
+            <bit num="6" name="RCIDL"/>
+            <bit num="7" name="ABDOVF"/>
+        </sfr>
+        <sfr name="OSCCON2" address="0xF64">
+            <bit num="0" name="MFIOSEL"/>
+            <bit num="1" name="MFIOFS"/>
+            <bit num="3" name="SOSCGO"/>
+            <bit num="6" name="SOSCRUN"/>
+        </sfr>
+        <sfr name="EEADRH" address="0xF63" />
+        <sfr name="EEADR" address="0xF62" />
+        <sfr name="EEDATA" address="0xF61" />
+        <sfr name="PIE6" address="0xF60">
+            <bit num="0" name="CMP1IE"/>
+            <bit num="1" name="CMP2IE"/>
+            <bit num="2" name="CMP3IE"/>
+            <bit num="4" name="EEIE"/>
+        </sfr>
+        <sfr name="RTCCFG" address="0xF5F">
+            <bit num="0" name="RTCPTR0"/>
+            <bit num="1" name="RTCPTR1"/>
+            <bit num="2" name="RTCOE"/>
+            <bit num="3" name="HALFSEC"/>
+            <bit num="4" name="RTCSYNC"/>
+            <bit num="5" name="RTCWREN"/>
+            <bit num="7" name="RTCEN"/>
+        </sfr>
+        <sfr name="RTCCAL" address="0xF5E">
+            <bit num="0" name="CAL0"/>
+            <bit num="1" name="CAL1"/>
+            <bit num="2" name="CAL2"/>
+            <bit num="3" name="CAL3"/>
+            <bit num="4" name="CAL4"/>
+            <bit num="5" name="CAL5"/>
+            <bit num="6" name="CAL6"/>
+            <bit num="7" name="CAL7"/>
+        </sfr>
+        <sfr name="RTCVALH" address="0xF5D" />
+        <sfr name="RTCVALL" address="0xF5C" />
+        <sfr name="ALRMCFG" address="0xF5B">
+            <bit num="0" name="ALRMPTR0"/>
+            <bit num="1" name="ALRMPTR1"/>
+            <bit num="2" name="AMASK0"/>
+            <bit num="3" name="AMASK1"/>
+            <bit num="4" name="AMASK2"/>
+            <bit num="5" name="AMASK3"/>
+            <bit num="6" name="CHIME"/>
+            <bit num="7" name="ALRMEN"/>
+        </sfr>
+        <sfr name="ALRMRPT" address="0xF5A">
+            <bit num="0" name="ARPT0"/>
+            <bit num="1" name="ARPT1"/>
+            <bit num="2" name="ARPT2"/>
+            <bit num="3" name="ARPT3"/>
+            <bit num="4" name="ARPT4"/>
+            <bit num="5" name="ARPT5"/>
+            <bit num="6" name="ARPT6"/>
+            <bit num="7" name="ARPT7"/>
+        </sfr>
+        <sfr name="ALRMVALH" address="0xF59" />
+        <sfr name="ALRMVALL" address="0xF58" />
+        <sfr name="CTMUCONH" address="0xF57">
+            <bit num="0" name="CTTRIG"/>
+            <bit num="1" name="IDISSEN"/>
+            <bit num="2" name="EDGSEQEN"/>
+            <bit num="3" name="EDGEN"/>
+            <bit num="4" name="TGEN"/>
+            <bit num="5" name="CTMUSIDL"/>
+            <bit num="7" name="CTMUEN"/>
+        </sfr>
+        <sfr name="CTMUCONL" address="0xF56">
+            <bit num="0" name="EDG1STAT"/>
+            <bit num="1" name="EDG2STAT"/>
+            <bit num="2" name="EDG1SEL0"/>
+            <bit num="3" name="EDG1SEL1"/>
+            <bit num="4" name="EDG1POL"/>
+            <bit num="5" name="EDG2SEL0"/>
+            <bit num="6" name="EDG2SEL1"/>
+            <bit num="7" name="EDG2POL"/>
+        </sfr>
+        <sfr name="CTMUICONH" address="0xF55">
+            <bit num="0" name="IRNG0"/>
+            <bit num="1" name="IRNG1"/>
+            <bit num="2" name="ITRIM0"/>
+            <bit num="3" name="ITRIM1"/>
+            <bit num="4" name="ITRIM2"/>
+            <bit num="5" name="ITRIM3"/>
+            <bit num="6" name="ITRIM4"/>
+            <bit num="7" name="ITRIM5"/>
+        </sfr>
+        <sfr name="CM1CON" address="0xF54">
+            <bit num="0" name="CCH0"/>
+            <bit num="1" name="CCH1"/>
+            <bit num="2" name="CREF"/>
+            <bit num="3" name="EVPOL0"/>
+            <bit num="4" name="EVPOL1"/>
+            <bit num="5" name="CPOL"/>
+            <bit num="6" name="COE"/>
+            <bit num="7" name="CON"/>
+        </sfr>
+        <sfr name="PADCFG1" address="0xF53">
+            <bit num="1" name="RTSECSEL0"/>
+            <bit num="2" name="RTSECSEL1"/>
+            <bit num="5" name="RJPU"/>
+            <bit num="6" name="REPU"/>
+            <bit num="7" name="RDPU"/>
+        </sfr>
+        <sfr name="ECCP2AS" address="0xF52">
+            <bit num="0" name="PSS2BD0"/>
+            <bit num="1" name="PSS2BD1"/>
+            <bit num="2" name="PSS2AC0"/>
+            <bit num="3" name="PSS2AC1"/>
+            <bit num="4" name="ECCP2AS0"/>
+            <bit num="5" name="ECCP2AS1"/>
+            <bit num="6" name="ECCP2AS2"/>
+            <bit num="7" name="ECCP2ASE"/>
+        </sfr>
+        <sfr name="ECCP2DEL" address="0xF51">
+            <bit num="0" name="P2DC0"/>
+            <bit num="1" name="P2DC1"/>
+            <bit num="2" name="P2DC2"/>
+            <bit num="3" name="P2DC3"/>
+            <bit num="4" name="P2DC4"/>
+            <bit num="5" name="P2DC5"/>
+            <bit num="6" name="P2DC6"/>
+            <bit num="7" name="P2RSEN"/>
+        </sfr>
+        <sfr name="CCPR2H" address="0xF50" />
+        <sfr name="CCPR2L" address="0xF4F" />
+        <sfr name="CCP2CON" address="0xF4E">
+            <bit num="0" name="CCP2M0"/>
+            <bit num="1" name="CCP2M1"/>
+            <bit num="2" name="CCP2M2"/>
+            <bit num="3" name="CCP2M3"/>
+            <bit num="4" name="DC2B0"/>
+            <bit num="5" name="DC2B1"/>
+            <bit num="6" name="P2M0"/>
+            <bit num="7" name="P2M1"/>
+        </sfr>
+        <sfr name="ECCP3AS" address="0xF4D">
+            <bit num="0" name="PSS3BD0"/>
+            <bit num="1" name="PSS3BD1"/>
+            <bit num="2" name="PSS3AC0"/>
+            <bit num="3" name="PSS3AC1"/>
+            <bit num="4" name="ECCP3AS0"/>
+            <bit num="5" name="ECCP3AS1"/>
+            <bit num="6" name="ECCP3AS2"/>
+            <bit num="7" name="ECCP3ASE"/>
+        </sfr>
+        <sfr name="ECCP3DEL" address="0xF4C">
+            <bit num="0" name="P3DC0"/>
+            <bit num="1" name="P3DC1"/>
+            <bit num="2" name="P3DC2"/>
+            <bit num="3" name="P3DC3"/>
+            <bit num="4" name="P3DC4"/>
+            <bit num="5" name="P3DC5"/>
+            <bit num="6" name="P3DC6"/>
+            <bit num="7" name="P3RSEN"/>
+        </sfr>
+        <sfr name="CCPR3H" address="0xF4B" />
+        <sfr name="CCPR3L" address="0xF4A" />
+        <sfr name="CCP3CON" address="0xF49">
+            <bit num="0" name="CCP3M0"/>
+            <bit num="1" name="CCP3M1"/>
+            <bit num="2" name="CCP3M2"/>
+            <bit num="3" name="CCP3M3"/>
+            <bit num="4" name="DC3B0"/>
+            <bit num="5" name="DC3B1"/>
+            <bit num="6" name="P3M0"/>
+            <bit num="7" name="P3M1"/>
+        </sfr>
+        <sfr name="CCPR8H" address="0xF48" />
+        <sfr name="CCPR8L" address="0xF47" />
+        <sfr name="CCP8CON" address="0xF46">
+            <bit num="0" name="CCP8M0"/>
+            <bit num="1" name="CCP8M1"/>
+            <bit num="2" name="CCP8M2"/>
+            <bit num="3" name="CCP8M3"/>
+            <bit num="4" name="DC8B0"/>
+            <bit num="5" name="DC8B1"/>
+        </sfr>
+        <sfr name="CCPR9H" address="0xF45" limit="no_low_mem"/>
+        <sfr name="CCPR9L" address="0xF44" limit="no_low_mem"/>
+        <sfr name="CCP9CON" address="0xF43" limit="no_low_mem">
+            <bit num="0" name="CCP9M0"/>
+            <bit num="1" name="CCP9M1"/>
+            <bit num="2" name="CCP9M2"/>
+            <bit num="3" name="CCP9M3"/>
+            <bit num="4" name="DC9B0"/>
+            <bit num="5" name="DC9B1"/>
+        </sfr>
+        <sfr name="CCPR10H" address="0xF42" limit="no_low_mem"/>
+        <sfr name="CCPR10L" address="0xF41" limit="no_low_mem"/>
+        <sfr name="CCP10CON" address="0xF40" limit="no_low_mem">
+            <bit num="0" name="CCP10M0"/>
+            <bit num="1" name="CCP10M1"/>
+            <bit num="2" name="CCP10M2"/>
+            <bit num="3" name="CCP10M3"/>
+            <bit num="4" name="DC10B0"/>
+            <bit num="5" name="DC10B1"/>
+        </sfr>
+        <sfr name="TMR7H" address="0xF3F" limit="no_low_mem"/>
+        <sfr name="TMR7L" address="0xF3E" limit="no_low_mem"/>
+        <sfr name="T7CON" address="0xF3D" limit="no_low_mem">
+            <bit num="0" name="TMR7ON"/>
+            <bit num="1" name="RD16"/>
+            <bit num="2" name="NOT_T7SYNC"/>
+            <bit num="3" name="SOSCEN"/>
+            <bit num="4" name="T7CKPS0"/>
+            <bit num="5" name="T7CKPS1"/>
+            <bit num="6" name="TMR7CS0"/>
+            <bit num="7" name="TMR7CS1"/>
+        </sfr>
+        <sfr name="T7GCON" address="0xF3C" limit="no_low_mem">
+            <bit num="0" name="T7GSS0"/>
+            <bit num="1" name="T7GSS1"/>
+            <bit num="2" name="T7GVAL"/>
+            <bit num="3" name="T7GGO"/>
+            <bit num="3" name="NOT_T7DONE"/>
+            <bit num="3" name="T7GGO_NOT_T7DONE"/>
+            <bit num="3" name="T7GGO_T7DONE"/>
+            <bit num="4" name="T7GSPM"/>
+            <bit num="5" name="T7GTM"/>
+            <bit num="6" name="T7GPOL"/>
+            <bit num="7" name="TMR7GE"/>
+        </sfr>
+        <sfr name="TMR6" address="0xF3B" />
+        <sfr name="PR6" address="0xF3A" />
+        <sfr name="T6CON" address="0xF39">
+            <bit num="0" name="T6CKPS0"/>
+            <bit num="1" name="T6CKPS1"/>
+            <bit num="2" name="TMR6ON"/>
+            <bit num="3" name="T6OUTPS0"/>
+            <bit num="4" name="T6OUTPS1"/>
+            <bit num="5" name="T6OUTPS2"/>
+            <bit num="6" name="T6OUTPS3"/>
+        </sfr>
+        <sfr name="TMR8" address="0xF38" />
+        <sfr name="PR8" address="0xF37" />
+        <sfr name="T8CON" address="0xF36">
+            <bit num="0" name="T8CKPS0"/>
+            <bit num="1" name="T8CKPS1"/>
+            <bit num="2" name="TMR8ON"/>
+            <bit num="3" name="T8OUTPS0"/>
+            <bit num="4" name="T8OUTPS1"/>
+            <bit num="5" name="T8OUTPS2"/>
+            <bit num="6" name="T8OUTPS3"/>
+        </sfr>
+        <sfr name="TMR10" address="0xF35" limit="no_low_mem"/>
+        <sfr name="PR10" address="0xF34" limit="no_low_mem"/>
+        <sfr name="T10CON" address="0xF33" limit="no_low_mem">
+            <bit num="0" name="T10CKPS0"/>
+            <bit num="1" name="T10CKPS1"/>
+            <bit num="2" name="TMR10ON"/>
+            <bit num="3" name="T10OUTPS0"/>
+            <bit num="4" name="T10OUTPS1"/>
+            <bit num="5" name="T10OUTPS2"/>
+            <bit num="6" name="T10OUTPS3"/>
+        </sfr>
+        <sfr name="TMR12" address="0xF32" limit="no_low_mem"/>
+        <sfr name="PR12" address="0xF31" limit="no_low_mem"/>
+        <sfr name="T12CON" address="0xF30" limit="no_low_mem">
+            <bit num="0" name="T12CKPS0"/>
+            <bit num="1" name="T12CKPS1"/>
+            <bit num="2" name="TMR12ON"/>
+            <bit num="3" name="T12OUTPS0"/>
+            <bit num="4" name="T12OUTPS1"/>
+            <bit num="5" name="T12OUTPS2"/>
+            <bit num="6" name="T12OUTPS3"/>
+        </sfr>
+        <sfr name="CM2CON" address="0xF2F">
+            <bit num="0" name="CCH0"/>
+            <bit num="1" name="CCH1"/>
+            <bit num="2" name="CREF"/>
+            <bit num="3" name="EVPOL0"/>
+            <bit num="4" name="EVPOL1"/>
+            <bit num="5" name="CPOL"/>
+            <bit num="6" name="COE"/>
+            <bit num="7" name="CON"/>
+        </sfr>
+        <sfr name="CM3CON" address="0xF2E">
+            <bit num="0" name="CCH0"/>
+            <bit num="1" name="CCH1"/>
+            <bit num="2" name="CREF"/>
+            <bit num="3" name="EVPOL0"/>
+            <bit num="4" name="EVPOL1"/>
+            <bit num="5" name="CPOL"/>
+            <bit num="6" name="COE"/>
+            <bit num="7" name="CON"/>
+        </sfr>
+        <sfr name="CCPTMRS0" address="0xF2D">
+            <bit num="0" name="C1TSEL0"/>
+            <bit num="1" name="C1TSEL1"/>
+            <bit num="2" name="C1TSEL2"/>
+            <bit num="3" name="C2TSEL0"/>
+            <bit num="4" name="C2TSEL1"/>
+            <bit num="5" name="C2TSEL2"/>
+            <bit num="6" name="C3TSEL0"/>
+            <bit num="7" name="C3TSEL1"/>
+        </sfr>
+        <sfr name="CCPTMRS1" address="0xF2C">
+            <bit num="0" name="C4TSEL0"/>
+            <bit num="1" name="C4TSEL1"/>
+            <bit num="2" name="C5TSEL0"/>
+            <bit num="4" name="C6TSEL0"/>
+            <bit num="6" name="C7TSEL0"/>
+            <bit num="7" name="C7TSEL1"/>
+        </sfr>
+        <sfr name="CCPTMRS2" address="0xF2B">
+            <bit num="0" name="C8TSEL0"/>
+            <bit num="1" name="C8TSEL1"/>
+            <bit num="2" name="C9TSEL0" limit="no_low_mem"/>
+            <bit num="4" name="C10TSEL0" limit="no_low_mem"/>
+        </sfr>
+        <sfr name="REFOCON" address="0xF2A">
+            <bit num="0" name="RODIV0"/>
+            <bit num="1" name="RODIV1"/>
+            <bit num="2" name="RODIV2"/>
+            <bit num="3" name="RODIV3"/>
+            <bit num="4" name="ROSEL"/>
+            <bit num="5" name="ROSSLP"/>
+            <bit num="7" name="ROON"/>
+        </sfr>
+        <sfr name="ODCON1" address="0xF29">
+            <bit num="0" name="SSP2OD"/>
+            <bit num="5" name="CCP1OD"/>
+            <bit num="6" name="CCP2OD"/>
+            <bit num="7" name="SSP1OD"/>
+        </sfr>
+        <sfr name="ODCON2" address="0xF28">
+            <bit num="0" name="CCP3OD"/>
+            <bit num="1" name="CCP4OD"/>
+            <bit num="2" name="CCP5OD"/>
+            <bit num="3" name="CCP6OD"/>
+            <bit num="4" name="CCP7OD"/>
+            <bit num="5" name="CCP8OD"/>
+            <bit num="6" name="CCP9OD" limit="no_low_mem"/>
+            <bit num="7" name="CCP10OD" limit="no_low_mem"/>
+        </sfr>
+        <sfr name="ODCON3" address="0xF27">
+            <bit num="0" name="CTMUDS"/>
+            <bit num="6" name="U1OD"/>
+            <bit num="7" name="U2OD"/>
+        </sfr>
+        <sfr name="MEMCON" address="0xF26">
+            <bit num="0" name="WM0"/>
+            <bit num="1" name="WM1"/>
+            <bit num="4" name="WAIT0"/>
+            <bit num="5" name="WAIT1"/>
+            <bit num="7" name="EBDIS"/>
+        </sfr>
+        <sfr name="ANCON0" address="0xF25">
+            <bit num="0" name="ANSEL0"/>
+            <bit num="1" name="ANSEL1"/>
+            <bit num="2" name="ANSEL2"/>
+            <bit num="3" name="ANSEL3"/>
+            <bit num="4" name="ANSEL4"/>
+            <bit num="5" name="ANSEL5"/>
+            <bit num="6" name="ANSEL6"/>
+            <bit num="7" name="ANSEL7"/>
+        </sfr>
+        <sfr name="ANCON1" address="0xF24">
+            <bit num="0" name="ANSEL8"/>
+            <bit num="1" name="ANSEL9"/>
+            <bit num="2" name="ANSEL10"/>
+            <bit num="3" name="ANSEL11"/>
+            <bit num="4" name="ANSEL12"/>
+            <bit num="5" name="ANSEL13"/>
+            <bit num="6" name="ANSEL14"/>
+            <bit num="7" name="ANSEL15"/>
+        </sfr>
+        <sfr name="ANCON2" address="0xF23">
+            <bit num="0" name="ANSEL16"/>
+            <bit num="1" name="ANSEL17"/>
+            <bit num="2" name="ANSEL18"/>
+            <bit num="3" name="ANSEL19"/>
+            <bit num="4" name="ANSEL20"/>
+            <bit num="5" name="ANSEL21"/>
+            <bit num="6" name="ANSEL22"/>
+            <bit num="7" name="ANSEL23"/>
+        </sfr>
+        <sfr name="RCSTA2" address="0xF22">
+            <bit num="0" name="RX9D"/>
+            <bit num="1" name="OERR"/>
+            <bit num="2" name="FERR"/>
+            <bit num="3" name="ADDEN"/>
+            <bit num="4" name="CREN"/>
+            <bit num="5" name="SREN"/>
+            <bit num="6" name="RX9"/>
+            <bit num="7" name="SPEN"/>
+        </sfr>
+        <sfr name="TXSTA2" address="0xF21">
+            <bit num="0" name="TX9D"/>
+            <bit num="1" name="TRMT"/>
+            <bit num="2" name="BRGH"/>
+            <bit num="3" name="SENDB"/>
+            <bit num="4" name="SYNC"/>
+            <bit num="5" name="TXEN"/>
+            <bit num="6" name="TX9"/>
+            <bit num="7" name="CSRC"/>
+        </sfr>
+        <sfr name="BAUDCON2" address="0xF20">
+            <bit num="0" name="ABDEN"/>
+            <bit num="1" name="WUE"/>
+            <bit num="3" name="BRG16"/>
+            <bit num="4" name="TXCKP"/>
+            <bit num="5" name="RXDTP"/>
+            <bit num="6" name="RCIDL"/>
+            <bit num="7" name="ABDOVF"/>
+        </sfr>
+        <sfr name="SPBRGH2" address="0xF1F" />
+        <sfr name="SPBRG2" address="0xF1E" />
+        <sfr name="RCREG2" address="0xF1D" />
+        <sfr name="TXREG2" address="0xF1C" />
+        <sfr name="PSTR2CON" address="0xF1B">
+            <bit num="0" name="STRA"/>
+            <bit num="1" name="STRB"/>
+            <bit num="2" name="STRC"/>
+            <bit num="3" name="STRD"/>
+            <bit num="4" name="STRSYNC"/>
+            <bit num="6" name="CMPL0"/>
+            <bit num="7" name="CMPL1"/>
+        </sfr>
+        <sfr name="PSTR3CON" address="0xF1A">
+            <bit num="0" name="STRA"/>
+            <bit num="1" name="STRB"/>
+            <bit num="2" name="STRC"/>
+            <bit num="3" name="STRD"/>
+            <bit num="4" name="STRSYNC"/>
+            <bit num="6" name="CMPL0"/>
+            <bit num="7" name="CMPL1"/>
+        </sfr>
+        <sfr name="PMD0" address="0xF19">
+            <bit num="0" name="ADCMD"/>
+            <bit num="1" name="SSP1MD"/>
+            <bit num="2" name="SSP2MD"/>
+            <bit num="3" name="UART1MD"/>
+            <bit num="4" name="UART2MD"/>
+            <bit num="5" name="CCP1MD"/>
+            <bit num="6" name="CCP2MD"/>
+            <bit num="7" name="CCP3MD"/>
+        </sfr>
+        <sfr name="PMD1" address="0xF18">
+            <bit num="0" name="EMBMD"/>
+            <bit num="1" name="TMR1MD"/>
+            <bit num="2" name="TMR2MD"/>
+            <bit num="3" name="TMR3MD"/>
+            <bit num="4" name="TMR4MD"/>
+            <bit num="5" name="RTCCMD"/>
+            <bit num="6" name="CTMUMD"/>
+            <bit num="7" name="PSPMD"/>
+        </sfr>
+        <sfr name="PMD2" address="0xF17">
+            <bit num="0" name="CMP1MD"/>
+            <bit num="1" name="CMP2MD"/>
+            <bit num="2" name="CMP3MD"/>
+            <bit num="3" name="TMR5MD"/>
+            <bit num="4" name="TMR6MD"/>
+            <bit num="5" name="TMR7MD" limit="no_low_mem"/>
+            <bit num="6" name="TMR8MD"/>
+            <bit num="7" name="TMR10MD" limit="no_low_mem"/>
+        </sfr>
+        <sfr name="PMD3" address="0xF16">
+            <bit num="0" name="TMR12MD" limit="no_low_mem"/>
+            <bit num="1" name="CCP4MD"/>
+            <bit num="2" name="CCP5MD"/>
+            <bit num="3" name="CCP6MD"/>
+            <bit num="4" name="CCP7MD"/>
+            <bit num="5" name="CCP8MD" limit="no_low_mem"/>
+            <bit num="6" name="CCP9MD" limit="no_low_mem"/>
+            <bit num="7" name="CCP10MD" limit="no_low_mem"/>
+        </sfr>
+    </sfrs>
+    <configs starting-page="404" ending-page="404" register-size="8">
+        <config name="CONFIG1L" address="0x300000">
+            <bit num="0" name="RETEN">
+                <choice name="ON" >0</choice>
+                <choice name="OFF">1</choice>
+            </bit>
+            <bit num="2" name="INTOSCSEL">
+                <choice name="HIGH">1</choice>
+                <choice name="LOW" >0</choice>
+            </bit>
+            <bits start-num="3" end-num="4" name="SOSCSEL">
+                <choice name="HIGH">11</choice>
+                <choice name="DIG" >10</choice>
+                <choice name="LOW" >01</choice>
+            </bits>
+            <bit num="6" name="XINST">
+                <choice name="ON" >1</choice>
+                <choice name="OFF">0</choice>
+            </bit>
+        </config>
+        <config name="CONFIG1H" address="0x300001">
+            <bits start-num="0" end-num="3" name="FOSC">
+                <choice name="EC1"   >1101</choice>
+                <choice name="EC1IO" >1100</choice>
+                <choice name="EC2"   >1011</choice>
+                <choice name="EC2IO" >1010</choice>
+                <choice name="INTIO1">1001</choice>
+                <choice name="INTIO2">1000</choice>
+                <choice name="RC"    >0111</choice>
+                <choice name="RCIO"  >0110</choice>
+                <choice name="EC3"   >0101</choice>
+                <choice name="EC3IO" >0100</choice>
+                <choice name="HS1"   >0011</choice>
+                <choice name="HS2"   >0010</choice>
+                <choice name="XT"    >0001</choice>
+                <choice name="LP"    >0000</choice>
+            </bits>
+            <bit num="4" name="PLLCFG">
+                <choice name="ON" >1</choice>
+                <choice name="OFF">0</choice>
+            </bit>
+            <bit num="6" name="FCMEN">
+                <choice name="ON" >1</choice>
+                <choice name="OFF">0</choice>
+            </bit>
+            <bit num="7" name="IESO">
+                <choice name="ON" >1</choice>
+                <choice name="OFF">0</choice>
+            </bit>
+        </config>
+        <config name="CONFIG2L" address="0x300002">
+            <bit num="0" name="PWRTEN">
+                <choice name="ON" >0</choice>
+                <choice name="OFF">1</choice>
+            </bit>
+            <bits start-num="1" end-num="2" name="BOREN">
+                <choice name="SBORDIS">11</choice>
+                <choice name="NOSLP"  >10</choice>
+                <choice name="ON"     >01</choice>
+                <choice name="OFF"    >00</choice>
+            </bits>
+            <bits start-num="3" end-num="4" name="BORV">
+                <choice name="3">11</choice>
+                <choice name="2">10</choice>
+                <choice name="1">01</choice>
+                <choice name="0">00</choice>
+                <choice name="1V8">11</choice>
+                <choice name="2V0">10</choice>
+                <choice name="2V7">01</choice>
+                <choice name="3V0">00</choice>
+            </bits>
+            <bits start-num="5" end-num="6" name="BORPWR">
+                <choice name="ZPBORMV">11</choice>
+                <choice name="HIGH"   >10</choice>
+                <choice name="MEDIUM" >01</choice>
+                <choice name="LOW"    >00</choice>
+            </bits>
+        </config>
+        <config name="CONFIG2H" address="0x300003">
+            <bits start-num="0" end-num="1" name="WDTEN">
+                <choice name="SWDTDIS">11</choice>
+                <choice name="ON"     >10</choice>
+                <choice name="NOSLP"  >01</choice>
+                <choice name="OFF"    >00</choice>
+            </bits>
+            <bits start-num="2" end-num="6" name="WDTPS0">
+                <choice name="1048576">10100</choice>
+                <choice name="524288" >10011</choice>
+                <choice name="262144" >10010</choice>
+                <choice name="131072" >10001</choice>
+                <choice name="65536"  >10000</choice>
+                <choice name="32768"  >01111</choice>
+                <choice name="16384"  >01110</choice>
+                <choice name="8192"   >01101</choice>
+                <choice name="4096"   >01100</choice>
+                <choice name="2048"   >01011</choice>
+                <choice name="1024"   >01010</choice>
+                <choice name="512"    >01001</choice>
+                <choice name="256"    >01000</choice>
+                <choice name="128"    >00111</choice>
+                <choice name="64"     >00110</choice>
+                <choice name="32"     >00101</choice>
+                <choice name="16"     >00100</choice>
+                <choice name="8"      >00011</choice>
+                <choice name="4"      >00010</choice>
+                <choice name="2"      >00001</choice>
+                <choice name="1"      >00000</choice>
+            </bits>
+        </config>
+        <config name="CONFIG3L" address="0x300004">
+            <bit num="0" name="RTCOSC">
+                <choice name="SOSCREF" >1</choice>
+                <choice name="INTOSCREF">0</choice>
+            </bit>
+            <bit num="3" name="EASHFT" limit="80_pin_chips">
+                <choice name="ON" >1</choice>
+                <choice name="OFF">0</choice>
+            </bit>
+            <bit num="4" name="ABW0" limit="80_pin_chips">
+                <choice name="ON" >1</choice>
+                <choice name="OFF">0</choice>
+            </bit>
+            <bit num="5" name="ABW1" limit="80_pin_chips">
+                <choice name="ON" >1</choice>
+                <choice name="OFF">0</choice>
+            </bit>
+            <bit num="6" name="BW" limit="80_pin_chips">
+                <choice name="ON" >1</choice>
+                <choice name="OFF">0</choice>
+            </bit>
+            <bit num="7" name="WAIT" limit="80_pin_chips">
+                <choice name="ON" >1</choice>
+                <choice name="OFF">0</choice>
+            </bit>
+        </config>
+        <config name="CONFIG3H" address="0x300005">
+            <bit num="0" name="CCP2MX">
+                <choice name="PORTC" >1</choice>
+                <choice name="PORTBE">0</choice>
+            </bit>
+            <bit num="1" name="ECCPMX" limit="80_pin_chips">
+                <choice name="ON" >1</choice>
+                <choice name="OFF">0</choice>
+            </bit>
+            <bit num="3" name="MSSPMSK">
+                <choice name="7" >1</choice>
+                <choice name="5">0</choice>
+                <choice name="MSK7" >1</choice>
+                <choice name="MSK5">0</choice>
+            </bit>
+            <bit num="7" name="MCLRE">
+                <choice name="ON" >1</choice>
+                <choice name="OFF">0</choice>
+            </bit>
+        </config>
+        <config name="CONFIG4L" address="0x300006">
+            <bit num="0" name="STVREN">
+                <choice name="ON" >1</choice>
+                <choice name="OFF">0</choice>
+            </bit>
+            <bit num="4" name="BBSIZ0">
+                <choice name="2K">1</choice>
+                <choice name="1K">0</choice>
+                <choice name="BB2K">1</choice>
+                <choice name="BB1K">0</choice>
+            </bit>
+            <bit num="4" name="BBSIZ">
+                <choice name="2K">1</choice>
+                <choice name="1K">0</choice>
+                <choice name="BB2K">1</choice>
+                <choice name="BB1K">0</choice>
+            </bit>
+            <bit num="7" name="DEBUG">
+                <choice name="ON" >0</choice>
+                <choice name="OFF">1</choice>
+            </bit>
+        </config>
+        <config name="CONFIG5L" address="0x300008">
+            <bit num="0" name="CP0">
+                <choice name="ON" >0</choice>
+                <choice name="OFF">1</choice>
+            </bit>
+            <bit num="1" name="CP1">
+                <choice name="ON" >0</choice>
+                <choice name="OFF">1</choice>
+            </bit>
+            <bit num="2" name="CP2">
+                <choice name="ON" >0</choice>
+                <choice name="OFF">1</choice>
+            </bit>
+            <bit num="3" name="CP3">
+                <choice name="ON" >0</choice>
+                <choice name="OFF">1</choice>
+            </bit>
+            <bit num="4" name="CP4" limit="max_mem">
+                <choice name="ON" >0</choice>
+                <choice name="OFF">1</choice>
+            </bit>
+            <bit num="5" name="CP5" limit="max_mem">
+                <choice name="ON" >0</choice>
+                <choice name="OFF">1</choice>
+            </bit>
+            <bit num="6" name="CP6" limit="max_mem">
+                <choice name="ON" >0</choice>
+                <choice name="OFF">1</choice>
+            </bit>
+            <bit num="7" name="CP7" limit="max_mem">
+                <choice name="ON" >0</choice>
+                <choice name="OFF">1</choice>
+            </bit>
+        </config>
+        <config name="CONFIG5H" address="0x300009">
+            <bit num="6" name="CPB">
+                <choice name="ON" >0</choice>
+                <choice name="OFF">1</choice>
+            </bit>
+            <bit num="7" name="CPD">
+                <choice name="ON" >0</choice>
+                <choice name="OFF">1</choice>
+            </bit>
+        </config>
+        <config name="CONFIG6L" address="0x30000A">
+            <bit num="0" name="WRT0">
+                <choice name="ON" >0</choice>
+                <choice name="OFF">1</choice>
+            </bit>
+            <bit num="1" name="WRT1">
+                <choice name="ON" >0</choice>
+                <choice name="OFF">1</choice>
+            </bit>
+            <bit num="2" name="WRT2">
+                <choice name="ON" >0</choice>
+                <choice name="OFF">1</choice>
+            </bit>
+            <bit num="3" name="WRT3">
+                <choice name="ON" >0</choice>
+                <choice name="OFF">1</choice>
+            </bit>
+            <bit num="4" name="WRT4" limit="max_mem">
+                <choice name="ON" >0</choice>
+                <choice name="OFF">1</choice>
+            </bit>
+            <bit num="5" name="WRT5" limit="max_mem">
+                <choice name="ON" >0</choice>
+                <choice name="OFF">1</choice>
+            </bit>
+            <bit num="6" name="WRT6" limit="max_mem">
+                <choice name="ON" >0</choice>
+                <choice name="OFF">1</choice>
+            </bit>
+            <bit num="7" name="WRT7" limit="max_mem">
+                <choice name="ON" >0</choice>
+                <choice name="OFF">1</choice>
+            </bit>
+        </config>
+        <config name="CONFIG6H" address="0x30000B">
+            <bit num="5" name="WRTC" limit="max_mem">
+                <choice name="ON" >1</choice>
+                <choice name="OFF">0</choice>
+            </bit>
+            <bit num="6" name="WRTB">
+                <choice name="ON" >0</choice>
+                <choice name="OFF">1</choice>
+            </bit>
+            <bit num="7" name="WRTD">
+                <choice name="ON" >0</choice>
+                <choice name="OFF">1</choice>
+            </bit>
+        </config>
+        <config name="CONFIG7L" address="0x30000C">
+            <bit num="0" name="EBTR0">
+                <choice name="ON" >0</choice>
+                <choice name="OFF">1</choice>
+            </bit>
+            <bit num="1" name="EBTR1">
+                <choice name="ON" >0</choice>
+                <choice name="OFF">1</choice>
+            </bit>
+            <bit num="2" name="EBTR2">
+                <choice name="ON" >0</choice>
+                <choice name="OFF">1</choice>
+            </bit>
+            <bit num="3" name="EBTR3">
+                <choice name="ON" >0</choice>
+                <choice name="OFF">1</choice>
+            </bit>
+            <bit num="4" name="EBTR4" limit="max_mem">
+                <choice name="ON" >0</choice>
+                <choice name="OFF">1</choice>
+            </bit>
+            <bit num="5" name="EBTR5" limit="max_mem">
+                <choice name="ON" >0</choice>
+                <choice name="OFF">1</choice>
+            </bit>
+            <bit num="6" name="EBTR6" limit="max_mem">
+                <choice name="ON" >0</choice>
+                <choice name="OFF">1</choice>
+            </bit>
+            <bit num="7" name="EBTR7" limit="max_mem">
+                <choice name="ON" >0</choice>
+                <choice name="OFF">1</choice>
+            </bit>
+        </config>
+        <config name="CONFIG7H" address="0x30000D">
+            <bit num="6" name="EBTRB">
+                <choice name="ON" >0</choice>
+                <choice name="OFF">1</choice>
+            </bit>
+        </config>
+        <config name="DEVID1" address="0x3FFFFE">
+            <bits start-num="0" end-num="4" name="REV">
+                <choice name="MSK" >11111</choice>
+            </bits>
+            <bits start-num="5" end-num="7" name="DEV">
+                <choice name="MSK" >111</choice>
+            </bits>
+        </config>
+        <config name="DEVID2" address="0x3FFFFF"/>
+    </configs>
+</family>

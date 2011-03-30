@@ -1,0 +1,186 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<!-- value types -->
+<xs:simpleType name="choice-value">
+    <xs:restriction base="xs:string">
+        <xs:pattern value="([01])+"/>
+    </xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="bit-name">
+    <xs:restriction base="xs:string">
+        <xs:pattern value="([A-Z0-9_])+"/>
+    </xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="bit-num">
+    <xs:restriction base="xs:int">
+        <xs:minInclusive value="0"/>
+        <xs:maxInclusive value="31"/>
+    </xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="address">
+    <xs:restriction base="xs:string">
+        <xs:pattern value="0x([0-9A-Fa-f])+"/>
+    </xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="class-type">
+    <xs:restriction base="xs:string">
+        <xs:enumeration value="PROC_CLASS_EEPROM8"/>
+        <xs:enumeration value="PROC_CLASS_EEPROM16"/>
+        <xs:enumeration value="PROC_CLASS_GENERIC"/>
+        <xs:enumeration value="PROC_CLASS_PIC12"/>
+        <xs:enumeration value="PROC_CLASS_SX"/>
+        <xs:enumeration value="PROC_CLASS_PIC14"/>
+        <xs:enumeration value="PROC_CLASS_PIC14E"/>
+        <xs:enumeration value="PROC_CLASS_PIC16"/>
+        <xs:enumeration value="PROC_CLASS_PIC16E"/>
+    </xs:restriction>
+</xs:simpleType>
+
+<xs:complexType name="empty-bit">
+    <xs:attribute name="num" type="bit-num" use="required"/>
+    <xs:attribute name="name" type="bit-name" use="required"/>
+    <xs:attribute name="limit" type="xs:string" use="optional"/>
+    <xs:attribute name="datasheet-error" type="xs:boolean" use="optional"/>
+</xs:complexType>
+
+<!-- Element definitions -->
+<xs:element name="choice">
+    <xs:complexType>
+        <xs:simpleContent>
+            <xs:extension base="choice-value">
+                <xs:attribute name="name" type="bit-name" use="required"/>
+                <xs:attribute name="limit" type="xs:string" use="optional"/>
+                <xs:attribute name="datasheet-error" type="xs:boolean" use="optional"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+</xs:element>
+
+<xs:complexType name="non-empty-bit">
+    <xs:choice minOccurs="1" maxOccurs="unbounded">
+        <xs:element ref="choice"/>
+    </xs:choice>
+    <xs:attribute name="num" type="bit-num" use="required"/>
+    <xs:attribute name="name" type="bit-name" use="required"/>
+    <xs:attribute name="limit" type="xs:string" use="optional"/>
+    <xs:attribute name="datasheet-error" type="xs:boolean" use="optional"/>
+</xs:complexType>
+
+<xs:element name="bits">
+    <xs:complexType>
+        <xs:choice minOccurs="1" maxOccurs="unbounded">
+            <xs:element ref="choice"/>
+        </xs:choice>
+        <xs:attribute name="start-num" type="bit-num" use="required"/>
+        <xs:attribute name="end-num" type="bit-num" use="required"/>
+        <xs:attribute name="name" type="bit-name" use="required"/>
+        <xs:attribute name="limit" type="xs:string" use="optional"/>
+        <xs:attribute name="datasheet-error" type="xs:boolean" use="optional"/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="sfr">
+    <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="bit" type="empty-bit"/>
+            <xs:element ref="bits"/>
+        </xs:choice>
+        <xs:attribute name="name" type="bit-name" use="required"/>
+        <xs:attribute name="address" type="address" use="required"/>
+        <xs:attribute name="limit" type="xs:string" use="optional"/>
+        <xs:attribute name="datasheet-error" type="xs:boolean" use="optional"/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="sfrs">
+    <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element ref="sfr"/>
+        </xs:choice>
+        <xs:attribute name="starting-page" type="xs:positiveInteger" use="required"/>
+        <xs:attribute name="ending-page" type="xs:positiveInteger" use="required"/>
+        <xs:attribute name="register-size" type="bit-num" use="required"/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="config">
+    <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="bit" type="non-empty-bit"/>
+            <xs:element ref="bits"/>
+        </xs:choice>
+        <xs:attribute name="name" type="bit-name" use="required"/>
+        <xs:attribute name="address" type="address" use="required"/>
+        <xs:attribute name="limit" type="xs:string" use="optional"/>
+        <xs:attribute name="datasheet-error" type="xs:boolean" use="optional"/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="configs">
+    <xs:complexType>
+        <xs:choice minOccurs="1" maxOccurs="unbounded">
+            <xs:element ref="config"/>
+        </xs:choice>
+        <xs:attribute name="starting-page" type="xs:positiveInteger" use="required"/>
+        <xs:attribute name="ending-page" type="xs:positiveInteger" use="required"/>
+        <xs:attribute name="register-size" type="bit-num" use="required"/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="devices">
+    <xs:complexType>
+        <xs:choice minOccurs="1" maxOccurs="unbounded">
+            <xs:element name="device">
+                <xs:complexType>
+                    <xs:all>
+                        <xs:element name="name" type="xs:string"/>
+                        <xs:element name="class" type="class-type"/>
+                        <xs:element name="pin-count" type="xs:positiveInteger"/>
+                        <xs:element name="coff-type" type="address"/>
+                        <xs:element name="num-pages" type="xs:nonNegativeInteger"/>
+                        <xs:element name="num-banks" type="address"/>
+                        <xs:element name="max-rom" type="address"/>
+                        <xs:element name="memory-size" type="xs:positiveInteger"/>
+                    </xs:all>
+                </xs:complexType>
+            </xs:element>
+        </xs:choice>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="limit">
+    <xs:complexType>
+        <xs:choice minOccurs="1" maxOccurs="unbounded">
+            <xs:element name="only" type="xs:string"/>
+        </xs:choice>
+        <xs:attribute name="name" type="xs:string" use="required"/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="limits">
+    <xs:complexType>
+        <xs:choice minOccurs="1" maxOccurs="unbounded">
+            <xs:element ref="limit"/>
+        </xs:choice>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="family">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element ref="devices"/>
+      <xs:element ref="limits"/>
+      <xs:element ref="sfrs"/>
+      <xs:element ref="configs"/>
+    </xs:sequence>
+    <xs:attribute name="name" type="xs:string" use="required"/>
+    <xs:attribute name="document-name" type="xs:string" use="required"/>
+  </xs:complexType>
+</xs:element>
+
+</xs:schema>
