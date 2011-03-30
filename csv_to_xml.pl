@@ -26,7 +26,7 @@ open( OUT, ">".$out_file ) or die "Unable to open: '".$out_file."'\n";
 print OUT "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n";
 print OUT <<END_LICENSE;
 <!--
-    Copyright (C) 2011, Weston Schmidt <weston_schmidt\@alumni.purdue.edu>
+    Copyright (C) 2011, Joe User <joe.user\@gmail.com>
 
     This XML document is based on the datasheet for the $name_uc part.
 
